@@ -17,7 +17,7 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
-  viteFinal: asyc (config) =>{
+  viteFinal: async (config) => {
     config.plugins?.push(
       /**  @see https://github.com/aleclarson/vite-tsconfig/paths */
       tsconfigPaths({

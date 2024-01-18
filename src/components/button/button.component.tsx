@@ -1,3 +1,7 @@
-export const Button: React.FC = () => {
-  return <button className="text-blue-500">Button</button>;
+import { ComponentProps } from "react";
+
+type ButtonProps = ComponentProps<"button">;
+
+export const Button: React.FC<ButtonProps> = ({ ...props }) => {
+  return <button className="text-blue-500" {...props} />;
 };
