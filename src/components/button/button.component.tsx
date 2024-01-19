@@ -1,6 +1,6 @@
 import { cn } from "@/utils";
 import { VariantProps, cva } from "class-variance-authority";
-import { ComponentProps } from "react";
+import { ComponentProps, forwardRef } from "react";
 
 const buttonStyles = cva(
   [
@@ -15,7 +15,7 @@ const buttonStyles = cva(
       variant: {
         solid: "",
         outline: "border-2",
-        ghost: "transition-colors duration 300",
+        ghost: "transition-colors duration-300",
       },
       size: {
         sm: "px-4 py-2 text-sm",
@@ -33,7 +33,7 @@ const buttonStyles = cva(
         className: "bg-primary-500 hover:bg-primary-600",
       },
       {
-        variant: "solid",
+        variant: "outline",
         colorscheme: "primary",
         className:
           "text-primary-600 border-primary-500 bg-transparent hover:bg-primary-100",
@@ -54,17 +54,14 @@ const buttonStyles = cva(
 
 type ButtonProps = ComponentProps<"button"> & VariantProps<typeof buttonStyles>;
 
-export const Button: React.FC<ButtonProps> = ({
-  variant,
-  size,
-  colorscheme,
-  className,
-  ...props
-}) => {
-  return (
-    <button
-      className={cn(buttonStyles({ variant, size, colorscheme, className }))}
-      {...props}
-    />
-  );
-};
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ variant, size, colorscheme, className, ...props }, ref) => {
+    return (
+      <button
+        ref={ref}
+        className={cn(buttonStyles({ variant, size, colorscheme, className }))}
+        {...props}
+      />
+    );
+  }
+);
